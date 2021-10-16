@@ -1,0 +1,34 @@
+by Sednaiur » Mon May 02, 2016 9:04 pm 
+
+Sorry about the delay.
+Here are the new elements and their specs.
+The amount of elements are as follows (all of them are un-animated and 32x32 pixels in size):
+
+Total worldmap tiles usable: "tile-1" to "tile-400" (tile 401 is not usable anymore). There are 72 new tiles.
+Total paths usable: "path-1" to "path-100" (path 101 is not usable anymore). There are 68 new paths, all using a mask/transparency.
+Total levels usable: "level-1" to "level-100" (level 101 is not usable anymore). There are 68 new levels, all using a mask/transparency.
+Total sceneries usable: "scene-1" to "scene-100" (scene 101 is not usable anymore). There are 35 new sceneries, all using a mask/transparency.
+Total blocks usable: "block-1" to "block-700" (block 701 is not usable anymore). There are 62 new blocks which are all using a mask/transparency.
+Total BGOs usable: "background-1" to "background-200" (background 201 is not usable anymore). There are 10 new BGOs which are all using a mask/transparency.
+
+There are no additional level-backgrounds ("background2-XX") usable, though.
+
+
+
+
+Bash loops:
+
+for((i=191;i<=200;i+=1)); do printf "[background-$i]\nimage=\"background-$i.gif\"\nname=\"Dummy BGO #$i\"\ngroup=\"Dummy BGOs\"\ncategory=\"Dummy BGOs\"\nview=background\nanimated=0\nframes=1\nsmbx64-sort-priority=0\n\n"; done;
+
+
+for((i=329,r=71,c=0;i<=400;i+=1,c+=1)); do printf "[tile-$i]\nimage=tile-$i.gif\nrow=$r\ncol=$c\n\n"; if [ $c -eq 4 ]; then c=-1; ((r++)); fi; done;
+
+for((i=33,r=7,c=0;i<=100;i+=1,c+=1)); do printf "[path-$i]\nimage=\"path-$i.gif\"\nrow=$r\ncol=$c\n\n"; if [ $c -eq 4 ]; then c=-1; ((r++)); fi; done;
+
+for((i=329;i<=400;i+=1)); do cp dummy_tile.gif tile-$i.gif; done
+
+for((i=191;i<=200;i+=1)); do cp dummy_bgo.gif background-$i.gif; done
+for((i=191;i<=200;i+=1)); do cp dummy_bgom.gif background-"$i"m.gif; done
+
+
+
